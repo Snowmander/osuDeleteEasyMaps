@@ -4,15 +4,14 @@ import os
 import shutil
 from time import sleep
 DesiredDifficulty = 4
-directory = "C:\osuBeatmapTest"
-
+directory = "D:\SongsDelEasyMaps"
 try:
     api_token = os.environ['osuAPI']
 except:
     # huh, you're not me
     api_token = input("osu!API Key?\n")
     DesiredDifficulty = float(input("Minimum Difficulty?\n"))
-    directory = input("Songs folder path?")
+    directory = input("Songs Folder Path?\n")
 
 def FindDiffs(set):
     response = requests.get("https://osu.ppy.sh/api/get_beatmaps?s={}&k={}&m=0&a=0".format(set, api_token))
@@ -27,7 +26,10 @@ def FindDiffs(set):
         return None
 
 # list beatmaps in the directory
+
 Bm_in_Dir = [(int(name[:name.index(' ')]), name) for name in os.listdir(directory) if os.path.join(directory, name)]
+
+
 print(Bm_in_Dir)
 
 
@@ -41,8 +43,10 @@ for number, name in Bm_in_Dir:
             ctn = False
         else:
             # rate limited?
-            sleep(60)
+            sleep(input(int("RATE LIMITED: SLEEP:")))
     if len(diffs) == 0:
-        shutil.rmtree(os.path.join(directory, name))
-
+        shutil.rmtree(os.path.join(directory, name), ignore_errors=True)
+        print("deleted  {}".format(number))
+    else:
+        print("spared   {}".format(number))
 
