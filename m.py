@@ -6,7 +6,6 @@ from time import sleep
 DesiredDifficulty = 4
 directory = "C:\osuBeatmapTest"
 
-
 try:
     api_token = os.environ['osuAPI']
 except:
