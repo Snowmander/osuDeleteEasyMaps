@@ -14,9 +14,6 @@ except:
     DesiredDifficulty = float(input("Minimum Difficulty?\n"))
     directory = input("Songs folder path?")
 
-
-
-
 def FindDiffs(set):
     response = requests.get("https://osu.ppy.sh/api/get_beatmaps?s={}&k={}&m=0&a=0".format(set, api_token))
     if response.status_code == 200:
