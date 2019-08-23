@@ -1,6 +1,6 @@
 import os
 import shutil
-directory = os.path.dirname(__file__) + "/testfolder"
+directory = input("Songs folder?")
 
 f = open('workfile', 'r')
 dictionary = f.read().split('\n')
